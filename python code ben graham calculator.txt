@@ -1,0 +1,19 @@
+pip install yfinance
+import yfinance as yf
+import math
+ticker=input("Stock to Evaluate Ben Graham Intrinsic Value")
+stock_info = yf.Ticker(ticker.upper())
+ticker_pe=stock_info.info['trailingPE']
+print('Price to Earnings : ',ticker_pe)
+if ticker_pe<15:
+    print("Price : ", stock_info.info['currentPrice'])
+    print("EPS : ", stock_info.info['trailingEps'])
+    print("Book Value : ", stock_info.info['bookValue'])
+    print("Ben Graham Intrinsic Value : ",math.sqrt(22.5*stock_info.info['trailingEps']*stock_info.info['bookValue']))
+elif ticker_pe<30:
+    print("Price : ", stock_info.info['currentPrice'])
+    print("EPS : ", stock_info.info['trailingEps'])
+    print("Book Value : ", stock_info.info['bookValue'])
+    print("Ben Graham Intrinsic Value : ",math.sqrt(22.5*stock_info.info['trailingEps']*stock_info.info['bookValue'])*1.41)
+else:
+    print('Price to Earnings Ratio is too high!!')
